@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: apphibian-feedback
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: RESEND_API_KEY
+        sync: false
+      - key: FEEDBACK_EMAIL_FROM
+        sync: false
+      - key: FEEDBACK_APPS
+        value: '{"librarian":"Librarian"}'
+      - key: FEEDBACK_IP_HOURLY_LIMIT
+        value: 5
+      - key: FEEDBACK_DAILY_LIMIT
+        value: 100
